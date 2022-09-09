@@ -5,6 +5,7 @@ class MyString {
 private:
 	char* str;
 	int length;
+	static int counter;
 public:
 	
 	MyString();
@@ -20,22 +21,34 @@ public:
 	void MyDelChr(char c);
 	int MyStrCmp(MyString& b);
 	void Print();
+	static int GetCount();
+	static void DemCount();
 };
+int MyString::counter = 0;
 
+int MyString::GetCount() {
+	return counter;
+}
+void MyString::DemCount() {
+	counter--;
+}
 MyString::MyString() {
 	length = 80;
 	str = new char[length+1];
 	*(str+length) = '\0';
+	counter++;
 }
 MyString::MyString(int size) {
 	length = size;
 	str = new char[size + 1];
 	*(str+size) = '\0';
+	counter++;
 }
 MyString::MyString(const char* s) {
 	length = strlen(s);
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, s);
+	counter++;
 }
 MyString::~MyString() {
 	delete[] str;
@@ -190,4 +203,5 @@ int main() {
 	//obj3.MyDelChr('x');
 	//obj3.Print();
 	cout << obj3.MyStrStr("over") << endl << obj3.MyStrStr("ever") << endl << obj3.MyStrStr("for") << endl << obj3.MyStrStr("or");
+	cout << MyString::GetCount();
 }
