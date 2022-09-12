@@ -9,6 +9,7 @@ private:
 public:
 	
 	MyString();
+	MyString(const MyString& obj);
 	MyString(int size);
 	MyString(const char* s);
 	~MyString();
@@ -38,6 +39,12 @@ MyString::MyString() {
 	*(str+length) = '\0';
 	counter++;
 }
+MyString::MyString(const MyString& obj){
+	str = new char[strlen(obj.str) + 1];
+	strcpy_s(str, strlen(obj.str) + 1, obj.str);
+	length = obj.length;
+	counter++;
+}
 MyString::MyString(int size) {
 	length = size;
 	str = new char[size + 1];
@@ -52,6 +59,7 @@ MyString::MyString(const char* s) {
 }
 MyString::~MyString() {
 	delete[] str;
+	counter--;
 }
 int MyString::MyStrLen() {//вывод длинны строки
 	length = 0;
@@ -188,6 +196,7 @@ int main() {
 	/*MyString obj1;
 	MyString obj2(45);*/
 	MyString obj3("forever");
+	MyString obj4(obj3);
 	/*cout << obj1.MyStrLen() << endl;
 	cout << obj2.MyStrLen() << endl;
 	cout << obj3.MyStrLen() << endl;
@@ -202,6 +211,7 @@ int main() {
 	//cout << obj3.MyChr('x');
 	//obj3.MyDelChr('x');
 	//obj3.Print();
-	cout << obj3.MyStrStr("over") << endl << obj3.MyStrStr("ever") << endl << obj3.MyStrStr("for") << endl << obj3.MyStrStr("or");
-	cout << MyString::GetCount();
+	cout << obj3.MyStrStr("over") << endl << obj3.MyStrStr("ever") << endl << obj3.MyStrStr("for") << endl << obj3.MyStrStr("or")<< endl;
+	cout << MyString::GetCount()<< endl;
+	obj4.Print();
 }
