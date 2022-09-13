@@ -14,14 +14,14 @@ public:
 	MyString(const char* s);
 	~MyString();
 	void InputOut();
-	void MyStrCpy(MyString& obj);
-	bool MyStrStr(const char* s);
-	int MyChr(char c);
+	void MyStrCpy(const MyString& obj);
+	bool MyStrStr(const char* s)const;
+	int MyChr(char c)const;
 	int MyStrLen();
 	void MyStrCat(MyString& obj);
 	void MyDelChr(char c);
-	int MyStrCmp(MyString& b);
-	void Print();
+	int MyStrCmp(MyString& b)const;
+	void Print() const;
 	static int GetCount();
 	static void DemCount();
 };
@@ -71,7 +71,7 @@ int MyString::MyStrLen() {//вывод длинны строки
 	}
 	return length;
 }
-void MyString::MyStrCpy(MyString& obj){//копирование строки
+void MyString::MyStrCpy( const MyString& obj){//копирование строки
 	if (str != nullptr) {
 		delete[]str;
 	}
@@ -86,7 +86,7 @@ void MyString::MyStrCpy(MyString& obj){//копирование строки
 		}
 	}
 }
-void MyString::Print() {//это моё
+void MyString::Print() const {//это моё
 	cout << str<< endl;
 }
 void MyString::InputOut() {//ввод и вывод
@@ -102,7 +102,7 @@ void MyString::InputOut() {//ввод и вывод
 	length = strlen(str);
 	cout << str << "\n";
 }
-int MyString::MyStrCmp(MyString& b) {//сравнение строк по длинне
+int MyString::MyStrCmp(MyString& b)const {//сравнение строк по длинне
 	unsigned long long size_a = strlen(str);
 	unsigned long long size_b = strlen(b.str);
 	if (size_a == size_b) { return 0; }
@@ -133,7 +133,7 @@ void MyString::MyStrCat(MyString& b) {//конкатенация строк
 	length = strlen(str);
 	delete[]buff;
 }
-int MyString::MyChr(char c) {//поиск указанного символа
+int MyString::MyChr(char c)const {//поиск указанного символа
 	int counter = 0;
 	for (int i = 0;; i++) {
 		if (*(str + counter) == c || *(str + counter)== '\0') {
@@ -172,7 +172,7 @@ void MyString::MyDelChr(char c) {//удаление указанного символа
 	length = buff_size;
 	delete[] buff;
 }
-bool MyString::MyStrStr(const char* s) {//подстрока в строке
+bool MyString::MyStrStr(const char* s)const {//подстрока в строке
 	int s_size = strlen(s);
 	int orig_size = length;
 	bool check=0;
