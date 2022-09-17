@@ -193,3 +193,19 @@ char MyString::operator[] (int i) {
 		return '\0';
 	}
 }
+
+MyString::operator int() {
+	return length;
+}
+
+MyString::operator char* () {
+	return str;
+}
+
+void PrintNum(int a) {
+	cout << a << endl;
+}
+
+void PrintStr(const char* a) {
+	cout << a << endl;
+}

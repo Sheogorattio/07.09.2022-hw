@@ -27,4 +27,10 @@ public:
 	MyString& operator= (const MyString& obj);
 	void operator() ();
 	char operator[] (int i);
+	operator int();
+	operator char* ();
+	
 };
+
+void PrintNum(int a);
+void PrintStr(const char* a);

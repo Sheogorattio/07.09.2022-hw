@@ -21,7 +21,8 @@ int main() {
 	//cout << obj3.MyChr('x');
 	//obj3.MyDelChr('x');
 	//obj3.Print();
-	cout << obj3.MyStrStr("over") << endl << obj3.MyStrStr("ever") << endl << obj3.MyStrStr("for") << endl << obj3.MyStrStr("or")<< endl;
-	cout << MyString::GetCount()<< endl;
-	obj4.Print();
+	//cout << obj3.MyStrStr("over") << endl << obj3.MyStrStr("ever") << endl << obj3.MyStrStr("for") << endl << obj3.MyStrStr("or")<< endl;
+	//cout << MyString::GetCount()<< endl;
+	PrintNum(obj3);
+	PrintStr(obj3);
 }
