@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="07.09.2022-hw.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MyString.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="07.09.2022-hw.cpp">
+    <ClCompile Include="MyString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyString.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

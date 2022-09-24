@@ -1,5 +1,5 @@
 #include "MyString.h"
-
+using namespace std;
 int MyString::counter = 0;
 
 int MyString::GetCount() {
@@ -15,6 +15,7 @@ MyString::MyString() {
 	counter++;
 }
 MyString::MyString(const MyString& obj) {
+	cout << "copy constr.\n";
 	str = new char[strlen(obj.str) + 1];
 	strcpy_s(str, strlen(obj.str) + 1, obj.str);
 	length = obj.length;
@@ -62,12 +63,16 @@ void MyString::MyStrCpy(const MyString& obj) {//копирование строки
 	}
 }
 void MyString::Print() const {//это моё
-	cout << str << endl;
+	if (str != nullptr) {
+		cout << str << endl;
+	}
+	else {
+		cout << "nullptr";
+	}
 }
-void MyString::InputOut() {//ввод и вывод
+void MyString::Input() {//ввод и вывод
 	int const buff_size = 255;
 	char buffer[buff_size];
-	cout << "enter text\n";
 	cin.getline(buffer, buff_size - 1);
 	if (str != nullptr) {
 		delete[] str;
@@ -75,7 +80,6 @@ void MyString::InputOut() {//ввод и вывод
 	str = new char[strlen(buffer) + 1];
 	strcpy_s(str, strlen(buffer) + 1, buffer);
 	length = strlen(str);
-	cout << str << "\n";
 }
 int MyString::MyStrCmp(MyString& b)const {//сравнение строк по длинне
 	unsigned long long size_a = strlen(str);
@@ -208,4 +212,41 @@ void PrintNum(int a) {
 
 void PrintStr(const char* a) {
 	cout << a << endl;
+}
+
+ostream& operator<<(ostream& os, const MyString& a) {
+	a.Print();
+	return os;
+}
+
+MyString::MyString(MyString&& obj) {
+	cout << "move constr.\n";
+	str = obj.str;
+	length = obj.length;
+	obj.str = nullptr;
+	obj.length = 0;
+}
+
+MyString& MyString::operator= (MyString&& obj) {
+	cout << "move =\n";
+	if (str != nullptr) {
+		delete[] str;
+	}
+	str = obj.str;
+	obj.str = nullptr;
+	length = obj.length;
+	obj.length = 0;
+	return *this;
+}
+
+MyString::MyString(initializer_list<char> a) {
+	cout << "init list\n";
+	length = a.size();
+	str = new char[length + 1];
+	for (auto c = a.begin(); c != a.end(); c++) {
+		*str = *c;
+		str++;
+	}
+	str -= length;
+	str[length] = '\0';
 }
